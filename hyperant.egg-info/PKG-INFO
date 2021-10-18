@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: hyperant
-Version: 2.1
+Version: 2.6
 Summary: BMC Research Programmer Technical Test - Ant on Cube
 Home-page: https://github.com/v0rtex20k
 Author: Victor Arsenescu
@@ -11,7 +11,7 @@ Description: ## Author: Victor Arsenescu
         ## Project Title: Boston Medical Center (BMC)
         ## Research Programmer Technical Test – "Ant on a Cube"
         
-        # After installing with pip, run`hyperant-ui` or `hyperant-gui` to get started.
+        # After installing with pip, run `hyperant-ui` or `hyperant-gui` to start.
         # If pip fails, use this [Github Repo](https://github.com/v0rtex20k/hyperant)
         
         

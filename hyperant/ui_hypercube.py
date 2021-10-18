@@ -8,6 +8,8 @@ from functools import lru_cache
 from turtle import Turtle, Screen
 from typing import Any, Dict, Tuple, List
 
+from pkg_resources import resource_filename
+
 @lru_cache(maxsize=None)
 def coords(v: int, dim: int)-> Tuple[int, int]:
     x,y = 0, -1 * (v & 1)
@@ -49,7 +51,10 @@ def get_output(es: Entry)-> Dict[str, Any]:
     keys = ['n_dimensions', 'start', 'finish', 'n_threads']
     args = {keys[i]: int(e[1].get()) for i,e in enumerate(es)}
     args['n_dimensions'] += 1
-    t = subprocess.Popen(f"bash ../scripts/run-hypercube.sh {args['start']} {args['finish']} {args['n_threads']} {args['n_dimensions']} ",
+    fp = None
+    try: fp = resource_filename('hyperant', 'scripts/run_hypercube')
+    except TypeError: fp = 'scripts/run_hypercube'
+    t = subprocess.Popen(f"bash {fp} {args['start']} {args['finish']} {args['n_threads']} {args['n_dimensions']} ",
                         shell=True, stdout=subprocess.PIPE).stdout.read()
     d = {"data": t.strip().decode(), "nums": list(map(int, re.findall(rb'\d+', t)))}
 
@@ -93,3 +98,5 @@ def run():
 
 def main():
     run()
+if __name__ == '__main__':
+    main()

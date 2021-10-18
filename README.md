@@ -3,7 +3,7 @@
 ## Project Title: Boston Medical Center (BMC)
 ## Research Programmer Technical Test – "Ant on a Cube"
 
-# After installing with **pip3**, run `hyperant-ui` or `hyperant-gui` to start.
+# After installing with pip, run `hyperant-ui` or `hyperant-gui` to start.
 # If pip fails, use this [Github Repo](https://github.com/v0rtex20k/hyperant)
 
 
