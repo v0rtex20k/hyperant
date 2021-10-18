@@ -1,0 +1,8 @@
+#!/bin/bash
+brew install libomp
+brew install armadillo
+clang++ -std=c++11 -Xpreprocessor -fopenmp -larmadillo -march=native -lomp ../scripts/hypercube.cpp -o hypercube
+./../scripts/hypercube $@
+
+# For debugging:
+# valgrind --leak-check=full ./hypercube

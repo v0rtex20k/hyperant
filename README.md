@@ -3,7 +3,7 @@
 ## Project Title: Boston Medical Center (BMC)
 ## Research Programmer Technical Test – "Ant on a Cube"
 
-
+# After installing with **pip3**, run `hyperant-ui` or `hyperant-gui` to start.
 # If pip fails, use this [Github Repo](https://github.com/v0rtex20k/hyperant)
 
 
@@ -24,9 +24,10 @@ to read all this and run everything :).
 Anyway, enough waffling. Here's how you start the code:
 
 
-**To run this code, all you need to do is go into the `hyperant` subdirectory
-and run `$ python3 ui_hyperant.py`. That's it! After that, the simple GUI should
-pop up and you can enter your preferences.**
+**To run this code, all you need to do is install it with pip, then run
+`$ hyperant-gui` or `$ hyperant-gui` in terminal from *anywhere* on your local
+machine (symlinked to the same UI version in /bin, so they're both global).
+That's it! After that, the GUI should open and you can enter your preferences.**
 
 As a quick note, the vertex indices start at *ZERO*, so for example we would run
 the original problem (ant traveling to opposite corner on a regular 3D cube ) by
@@ -38,11 +39,6 @@ Then just hit "Compute", or hit "End" if you want to try new settings.
 For dimensions > 6, it takes a while to actually draw the hypercube, so for a
 while you might just see a bunch of dots (all black except for one blue and one
 red) appearing on the screen - this is expected.
-
-If you want to run it in headless mode (i.e just the backend), you can do that
-by going into the `scripts` subdirectory and running `$./run-hypercube 0 7 50 3`,
-where the expected order of command line args is entry index, exit index, number
-of threads, and finally number of dimensions.
 
 ------------------------------>>> Overview <<-----------------------------------
 
@@ -152,14 +148,14 @@ I should also note that I took care not to import any non-standard modules
 
 As before, file "scripts/run-hypercube.sh" acts as a makefile for my backend C++
 code, which is freshly compiled each time I run it. To run the python file, do
-`$ python3 ui_hypercube.py`
-and wait for the GUI to pop up. Note that somtimes it takes a minute or two for
-the code to start drawing as you travel to higher dimensions. To start the
-animation, just fill in the fields in the UI popup (ndim >=1, nthreads >=1, etc)
-and hit "Compute". If you want to change certain parameter settings, hit "End"
-and repeat these steps to launch again. Technically if you spam "Compute" with
-new parameters it will actually work, but it's a bit wonky, so the reccomended
-behavior is just to terminate the script and start again.
+`$ hyperant-ui` or `$ hyperant-gui` and wait for the GUI to pop up. Note that
+sometimes it takes a minute or two for the code to start drawing as you travel
+to higher dimensions. To start the animation, just fill in the fields in the 
+UI popup (ndim >=1, nthreads >=1, etc) and hit "Compute". If you want to change
+certain parameter settings, hit "End" and repeat these steps to launch again.
+Technically if you spam "Compute" with new parameters it will actually work,
+but it's a bit wonky, so the recommended behavior is just to terminate the
+script with the "End" button (avoid Control-C) and start again.
 
 
 ----------------------------->>> Conlusion <<-----------------------------------

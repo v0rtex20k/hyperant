@@ -1,0 +1,4 @@
+[console_scripts]
+hyperant-gui = hyperant.ui_hypercube:main
+hyperant-ui = hyperant.ui_hypercube:run
+

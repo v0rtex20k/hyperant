@@ -82,7 +82,7 @@ def makeform(root, fields):
         entries.append((f,e))
     return entries
 
-if __name__ == '__main__':
+def run():
     root = Tk()
     es = makeform(root, ('Which dimension?', 'Entry node index?', 'Exit node index?', 'How many threads?'))
     b = Button(root, text='End', command=root.quit)
@@ -90,3 +90,6 @@ if __name__ == '__main__':
     c = Button(root, text='Compute', command=(lambda es=es : hypercube(es)))
     c.pack(side=BOTTOM, padx=5, pady=5)
     root.mainloop()
+
+def main():
+    run()
