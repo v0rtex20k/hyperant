@@ -52,7 +52,7 @@ def get_output(es: Entry)-> Dict[str, Any]:
     keys = ['n_dimensions', 'start', 'finish', 'n_threads']
     args = {keys[i]: int(e[1].get()) for i,e in enumerate(es)}
     args['n_dimensions'] += 1
-    t = subprocess.Popen(f"./run_hypercube {args['start']} {args['finish']} {args['n_threads']} {args['n_dimensions']} ",
+    t = subprocess.Popen(f"./scripts/run_hypercube {args['start']} {args['finish']} {args['n_threads']} {args['n_dimensions']} ",
                         shell=True, stdout=subprocess.PIPE).stdout.read()
     d = {"data": t.strip().decode(), "nums": list(map(int, re.findall(rb'\d+', t)))}
 
