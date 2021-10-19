@@ -1,6 +1,6 @@
 #!/bin/bash
-brew install libomp
-brew install armadillo
+brew install libomp > /dev/null
+brew install armadillo > /dev/null
 clang++ -std=c++11 -Xpreprocessor -fopenmp -larmadillo -march=native -lomp scripts/hypercube.cpp -o hypercube
 ./hypercube $@
 
