@@ -3,10 +3,11 @@
 ## Project Title: Boston Medical Center (BMC)
 ## Research Programmer Technical Test – "Ant on a Cube"
 
-# To run from barebones repo:
-# `$ python3 ui_hypercube.py` // for GUI version
-# `$ ./scripts/run_hypercube <n_dimensions> <start node idx> <end node idx> <n_threads>`
+## To run from barebones repo:
+### `$ python3 ui_hypercube.py` // for GUI version
+### `$ ./scripts/run_hypercube <n_dimensions> <start node idx> <end node idx> <n_threads>`
 ### // headless - e.x `./scripts/run_hypercube 3 0 7 50`
+### Remember, nodes are zero indexed!!
 
 ----------------------------->>> Introduction <<--------------------------------
 

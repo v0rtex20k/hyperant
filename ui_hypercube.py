@@ -2,13 +2,13 @@ import re
 import os
 import math
 import turtle
+import argparse
 import subprocess
 from tkinter import *
 from functools import lru_cache
 from turtle import Turtle, Screen
 from typing import Any, Dict, Tuple, List
 
-from pkg_resources import resource_filename
 
 @lru_cache(maxsize=None)
 def coords(v: int, dim: int)-> Tuple[int, int]:
@@ -34,11 +34,12 @@ def draw_cube(t: turtle.Turtle, args: Dict[str,int])-> None:
     dim = args['n_dimensions']
     t.penup(); t.shape('circle')
     t.shapesize(0.05); t.speed(0); t.setpos(-10,-10)
-    cs = {i: coords(i,dim) for i in range(1<<dim)}
-    for i,v in cs.items():
+    cs = {i: coords(i*2,dim) for i in range(1<<dim)}
+    print(cs)
+    for i,v in sorted(cs.items()):
         t.color("black"); dotsize = 3
-        if i == args['start' ]: t.color("red");  dotsize = 10
-        if i == args['finish']: t.color("blue"); dotsize = 10
+        if i == args['start' ]: t.color("blue");  dotsize = 10
+        if i == args['finish']: t.color("red"); dotsize = 10
         t.goto(v); t.dot(dotsize)
 
     for i in range(1<<dim):
@@ -51,10 +52,7 @@ def get_output(es: Entry)-> Dict[str, Any]:
     keys = ['n_dimensions', 'start', 'finish', 'n_threads']
     args = {keys[i]: int(e[1].get()) for i,e in enumerate(es)}
     args['n_dimensions'] += 1
-    fp = None
-    try: fp = resource_filename('hyperant', 'scripts/run_hypercube')
-    except TypeError: fp = 'scripts/run_hypercube'
-    t = subprocess.Popen(f"bash {fp} {args['start']} {args['finish']} {args['n_threads']} {args['n_dimensions']} ",
+    t = subprocess.Popen(f"./run-hypercube.sh {args['start']} {args['finish']} {args['n_threads']} {args['n_dimensions']} ",
                         shell=True, stdout=subprocess.PIPE).stdout.read()
     d = {"data": t.strip().decode(), "nums": list(map(int, re.findall(rb'\d+', t)))}
 
@@ -75,7 +73,7 @@ def hypercube(es: Entry)-> None:
 @lru_cache(maxsize=None)
 def makeform(root, fields):
     entries = list()
-    l = Label(root, width=30, text="ANT Inc. Interdimensional Transit Services", anchor='w')
+    l = Label(root, width=30, text="ANT Inc. Interdimensional Taxi Services", anchor='w')
     l.pack(side=TOP)
     for i,f in enumerate(fields):
         row = Frame(root)
@@ -87,7 +85,7 @@ def makeform(root, fields):
         entries.append((f,e))
     return entries
 
-def run():
+if __name__ == '__main__':
     root = Tk()
     es = makeform(root, ('Which dimension?', 'Entry node index?', 'Exit node index?', 'How many threads?'))
     b = Button(root, text='End', command=root.quit)
@@ -96,7 +94,3 @@ def run():
     c.pack(side=BOTTOM, padx=5, pady=5)
     root.mainloop()
 
-def main():
-    run()
-if __name__ == '__main__':
-    main()
