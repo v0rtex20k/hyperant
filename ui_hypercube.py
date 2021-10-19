@@ -35,7 +35,7 @@ def draw_cube(t: turtle.Turtle, args: Dict[str,int])-> None:
     t.penup(); t.shape('circle')
     t.shapesize(0.05); t.speed(0); t.setpos(-10,-10)
     cs = {i: coords(i*2,dim) for i in range(1<<dim)}
-    print(cs)
+
     for i,v in sorted(cs.items()):
         t.color("black"); dotsize = 3
         if i == args['start' ]: t.color("blue");  dotsize = 10
@@ -52,7 +52,7 @@ def get_output(es: Entry)-> Dict[str, Any]:
     keys = ['n_dimensions', 'start', 'finish', 'n_threads']
     args = {keys[i]: int(e[1].get()) for i,e in enumerate(es)}
     args['n_dimensions'] += 1
-    t = subprocess.Popen(f"./run-hypercube.sh {args['start']} {args['finish']} {args['n_threads']} {args['n_dimensions']} ",
+    t = subprocess.Popen(f"./run_hypercube {args['start']} {args['finish']} {args['n_threads']} {args['n_dimensions']} ",
                         shell=True, stdout=subprocess.PIPE).stdout.read()
     d = {"data": t.strip().decode(), "nums": list(map(int, re.findall(rb'\d+', t)))}
 
